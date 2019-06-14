@@ -12,7 +12,7 @@ make flash
 
 # Set Clocl Mode   
 
-This mode set a RTC clock using a NTP timeserver.   
+This mode set RTC initial value using NTP time Server.   
 you have to set these config value using menuconfig.   
 
 ![config-ds1302-1](https://user-images.githubusercontent.com/6020549/59513345-a3568980-8ef5-11e9-85c8-4ed1744d73e1.jpg)
