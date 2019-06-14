@@ -34,5 +34,7 @@ you have to change mode using menuconfig.
 
 ![config-ds1302-11](https://user-images.githubusercontent.com/6020549/59513485-e3b60780-8ef5-11e9-9d77-aee1cb9d40dd.jpg)
 
+![config-ds1302-13](https://user-images.githubusercontent.com/6020549/59514431-ca15bf80-8ef7-11e9-9b59-ff4b5510ec0f.jpg)
+
 ![ds1302-13](https://user-images.githubusercontent.com/6020549/59513594-1fe96800-8ef6-11e9-9b53-a2d2626d784f.jpg)
 
