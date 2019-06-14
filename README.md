@@ -10,7 +10,7 @@ make flash
 
 ---
 
-# Set Clocl Mode   
+# Set Clock Mode   
 
 This mode set RTC initial value using NTP time Server.   
 you have to set these config value using menuconfig.   
@@ -27,7 +27,7 @@ you have to set gpio & NTP Server using menuconfig.
 
 ---
 
-# Get Time Mode   
+# Get Clock Mode   
 
 This mode takes out the time from a RTC clock.   
 you have to change mode using menuconfig.   
