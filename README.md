@@ -2,15 +2,15 @@
 DS1302 RTC Driver for esp-idf
 
 ```
-git clone https://github.com/nopnop2002/esp-idf-ili9340
-cd esp-idf-ili9340/
+git clone https://github.com/nopnop2002/esp-idf-ds1302
+cd esp-idf-ds1302
 make menuconfig
 make flash
 ```
 
 ---
 
-#Set Time Mode   
+# Set Time Mode   
 
 This mode set RTC using NTP time Server.   
 you have to set these config value using menuconfig.   
@@ -27,7 +27,7 @@ you have to set gpio & NTP Server using menuconfig.
 
 ---
 
-#Get Time Mode   
+# Get Time Mode   
 
 This mode read RTC.   
 you have to change mode using menuconfig.   
