@@ -10,9 +10,9 @@ make flash
 
 ---
 
-# Set Time Mode   
+# Set Clocl Mode   
 
-This mode set RTC using NTP time Server.   
+This mode set to RTC Clock using NTP time Server.   
 you have to set these config value using menuconfig.   
 
 ![config-ds1302-1](https://user-images.githubusercontent.com/6020549/59513345-a3568980-8ef5-11e9-85c8-4ed1744d73e1.jpg)
@@ -29,7 +29,7 @@ you have to set gpio & NTP Server using menuconfig.
 
 # Get Time Mode   
 
-This mode read RTC.   
+This mode read from RTC Clock.   
 you have to change mode using menuconfig.   
 
 ![config-ds1302-11](https://user-images.githubusercontent.com/6020549/59513485-e3b60780-8ef5-11e9-9d77-aee1cb9d40dd.jpg)
