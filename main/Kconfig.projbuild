@@ -1,0 +1,61 @@
+menu "DS1302 Configuration"
+
+    config CLK_GPIO
+        int "DS1302 CLK GPIO number"
+        range 0 34
+        default 15
+        help
+            GPIO number (IOxx) to DS1302 CLK.
+            Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to CS.
+            GPIOs 35-39 are input-only so cannot be used as outputs.
+
+    config IO_GPIO
+        int "DS1302 IO(DAT) GPIO number"
+        range 0 34
+        default 16
+        help
+            GPIO number (IOxx) to DS1302 IO.
+            Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to DC.
+            GPIOs 35-39 are input-only so cannot be used as outputs.
+
+    config CE_GPIO
+        int "DS1302 CE(RST) GPIO number"
+        range 0 34
+        default 17
+        help
+            GPIO number (IOxx) to DS1302 CE(RST).
+            Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to Reset.
+            GPIOs 35-39 are input-only so cannot be used as outputs.
+
+    config TIMEZONE
+        int "Your TimeZone"
+        range 0 23
+        default 0
+        help
+            Your local timezone.
+            When it is 0, Greenwich Mean Time.
+
+    choice MODE
+        prompt "Access Mode"
+        default SET_CLOCK
+        help
+            Select mode for the example.
+        config SET_CLOCK
+            bool "Set Clock & Get Clock"
+            help
+                Set clock to DS1302 & Get clock from DS1302.
+        config GET_CLOCK
+            bool "Only Get Clock"
+            help
+                Get clock from DS1302.
+    endchoice
+
+if SET_CLOCK
+    config NTP_SERVER
+        string "NTP Server"
+        default "pool.ntp.org"
+        help
+            Hostname for NTP Server.
+endif
+
+endmenu
