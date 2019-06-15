@@ -48,9 +48,13 @@ menu "DS1302 Configuration"
             bool "Only Get Clock"
             help
                 Get clock from DS1302.
+        config DIFF_CLOCK
+            bool "Get the time difference"
+            help
+                Get the time difference of NTP and RTC.
     endchoice
 
-if SET_CLOCK
+if SET_CLOCK || DIFF_CLOCK
     config NTP_SERVER
         string "NTP Server"
         default "pool.ntp.org"

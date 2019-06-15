@@ -29,6 +29,9 @@
 #if CONFIG_GET_CLOCK
     #define NTP_SERVER " "
 #endif
+#if CONFIG_DIFF_CLOCK
+    #define NTP_SERVER CONFIG_NTP_SERVER
+#endif
 
 static const char *TAG = "DS1302";
 
@@ -84,9 +87,7 @@ void setClock(void *pvParameters)
     ESP_LOGI(pcTaskGetTaskName(0), "Connecting to WiFi and getting time over NTP.");
     if(!obtain_time()) {
         ESP_LOGE(pcTaskGetTaskName(0), "Fail to getting time over NTP.");
-        while (1) {
-            vTaskDelay(1);
-        }
+        while (1) { vTaskDelay(1); }
     }
 
     // update 'now' variable with current time
@@ -104,9 +105,7 @@ void setClock(void *pvParameters)
     DS1302_Dev dev;
     if (!DS1302_begin(&dev, CONFIG_CLK_GPIO, CONFIG_IO_GPIO, CONFIG_CE_GPIO)) {
         ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 begin");
-        while (1) {
-            vTaskDelay(1);
-        }
+        while (1) { vTaskDelay(1); }
     }
     ESP_LOGI(pcTaskGetTaskName(0), "Set initial date time...");
 
@@ -144,17 +143,13 @@ void setClock(void *pvParameters)
     // Check write protect state
     if (DS1302_isWriteProtected(&dev)) {
         ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 write protected");
-        while (1) {
-            vTaskDelay(1);
-        }
+        while (1) { vTaskDelay(1); }
     }
 
     // Check write protect state
     if (DS1302_isHalted(&dev)) {
         ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 halted");
-        while (1) {
-            vTaskDelay(1);
-        }
+        while (1) { vTaskDelay(1); }
     }
     ESP_LOGI(pcTaskGetTaskName(0), "Set initial date time done");
 
@@ -173,9 +168,7 @@ void getClock(void *pvParameters)
     ESP_LOGI(pcTaskGetTaskName(0), "Start");
     if (!DS1302_begin(&dev, CONFIG_CLK_GPIO, CONFIG_IO_GPIO, CONFIG_CE_GPIO)) {
         ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 begin");
-        while (1) {
-            vTaskDelay(1);
-        }
+        while (1) { vTaskDelay(1); }
     }
 
     // Initialise the xLastWakeTime variable with the current time.
@@ -192,6 +185,62 @@ void getClock(void *pvParameters)
     }
 }
 
+void diffClock(void *pvParameters)
+{
+    // obtain time over NTP
+    ESP_LOGI(pcTaskGetTaskName(0), "Connecting to WiFi and getting time over NTP.");
+    if(!obtain_time()) {
+        ESP_LOGE(pcTaskGetTaskName(0), "Fail to getting time over NTP.");
+        while (1) { vTaskDelay(1); }
+    }
+
+    // update 'now' variable with current time
+    time_t now;
+    struct tm timeinfo;
+    char strftime_buf[64];
+    time(&now);
+    now = now + (CONFIG_TIMEZONE*60*60);
+    localtime_r(&now, &timeinfo);
+    strftime(strftime_buf, sizeof(strftime_buf), "%m-%d-%y %H:%M:%S", &timeinfo);
+    ESP_LOGI(pcTaskGetTaskName(0), "NTP date/time is: %s", strftime_buf);
+
+    DS1302_Dev dev;
+    DS1302_DateTime dt;
+
+    // Initialize RTC
+    if (!DS1302_begin(&dev, CONFIG_CLK_GPIO, CONFIG_IO_GPIO, CONFIG_CE_GPIO)) {
+        ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 begin");
+        while (1) { vTaskDelay(1); }
+    }
+
+    // Get RTC date and time
+    if (!DS1302_getDateTime(&dev, &dt)) {
+        ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 read failed");
+        while (1) { vTaskDelay(1); }
+    }
+
+    // update 'rtcnow' variable with current time
+    struct tm rtcinfo;
+    rtcinfo.tm_sec = dt.second;
+    rtcinfo.tm_min = dt.minute;
+    rtcinfo.tm_hour = dt.hour;
+    rtcinfo.tm_mday = dt.dayMonth;
+    rtcinfo.tm_mon = dt.month - 1; // 0 org.
+    rtcinfo.tm_year = dt.year - 1900;
+    rtcinfo.tm_isdst = -1;
+    time_t rtcnow = mktime(&rtcinfo);
+    localtime_r(&rtcnow, &timeinfo);
+    strftime(strftime_buf, sizeof(strftime_buf), "%m-%d-%y %H:%M:%S", &timeinfo);
+    ESP_LOGI(pcTaskGetTaskName(0), "RTC date/time is: %s", strftime_buf);
+
+    // Get the time difference
+    double x = difftime(now, rtcnow);
+    ESP_LOGI(pcTaskGetTaskName(0), "Time difference is: %f", x);
+    
+    while(1) {
+        vTaskDelay(1000);
+    }
+}
 
 
 void app_main(void)
@@ -215,6 +264,11 @@ void app_main(void)
 #if CONFIG_GET_CLOCK
     // Get clock
     xTaskCreate(getClock, "getClock", 1024*4, NULL, 2, NULL);
+#endif
+
+#if CONFIG_DIFF_CLOCK
+    // Diff clock
+    xTaskCreate(diffClock, "diffClock", 1024*4, NULL, 2, NULL);
 #endif
 }
 

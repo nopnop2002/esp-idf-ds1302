@@ -34,7 +34,7 @@ you have to set gpio & NTP Server using menuconfig.
 
 # Get Clock Mode   
 
-This mode takes out the time from a RTC clock.   
+This mode take out the time from a RTC clock.   
 you have to change mode using menuconfig.   
 
 ![config-ds1302-11](https://user-images.githubusercontent.com/6020549/59513485-e3b60780-8ef5-11e9-9d77-aee1cb9d40dd.jpg)
@@ -42,4 +42,18 @@ you have to change mode using menuconfig.
 ![config-ds1302-13](https://user-images.githubusercontent.com/6020549/59514431-ca15bf80-8ef7-11e9-9b59-ff4b5510ec0f.jpg)
 
 ![ds1302-13](https://user-images.githubusercontent.com/6020549/59513594-1fe96800-8ef6-11e9-9b53-a2d2626d784f.jpg)
+
+---
+
+# Get the time difference of NTP and RTC   
+
+This mode get time over NTP, and takes out the time from a RTC clock.   
+Calculate time difference of NTP and RTC.   
+you have to change mode using menuconfig.   
+
+![config-ds1302-11](https://user-images.githubusercontent.com/6020549/59513485-e3b60780-8ef5-11e9-9d77-aee1cb9d40dd.jpg)
+
+![config-ds1302-14](https://user-images.githubusercontent.com/6020549/59556587-9de56600-8fff-11e9-8a02-69eacd675ad8.jpg)
+
+![ds1302-14](https://user-images.githubusercontent.com/6020549/59556592-ab025500-8fff-11e9-89ad-a1a81c205726.jpg)
 
