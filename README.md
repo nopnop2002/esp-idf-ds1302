@@ -1,12 +1,17 @@
 # esp-idf-ds1302
 DS1302 RTC Driver for esp-idf
 
+I ported from here.   
+https://github.com/Erriez/ErriezDS1302/tree/master/src
+
 ```
 git clone https://github.com/nopnop2002/esp-idf-ds1302
 cd esp-idf-ds1302
 make menuconfig
 make flash
 ```
+
+
 
 ---
 
