@@ -234,7 +234,7 @@ void diffClock(void *pvParameters)
     ESP_LOGI(pcTaskGetTaskName(0), "RTC date/time is: %s", strftime_buf);
 
     // Get the time difference
-    double x = difftime(now, rtcnow);
+    double x = difftime(rtcnow, now);
     ESP_LOGI(pcTaskGetTaskName(0), "Time difference is: %f", x);
     
     while(1) {

@@ -55,5 +55,5 @@ you have to change mode using menuconfig.
 
 ![config-ds1302-14](https://user-images.githubusercontent.com/6020549/59556587-9de56600-8fff-11e9-8a02-69eacd675ad8.jpg)
 
-![ds1302-14](https://user-images.githubusercontent.com/6020549/59556592-ab025500-8fff-11e9-89ad-a1a81c205726.jpg)
+![ds1302-14](https://user-images.githubusercontent.com/6020549/59556737-b2772d80-9002-11e9-921e-4a794605dd86.jpg)
 
