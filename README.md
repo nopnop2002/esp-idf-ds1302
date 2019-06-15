@@ -47,7 +47,7 @@ you have to change mode using menuconfig.
 
 # Get the time difference of NTP and RTC   
 
-This mode get time over NTP, and takes out the time from a RTC clock.   
+This mode get time over NTP, and take out the time from a RTC clock.   
 Calculate time difference of NTP and RTC.   
 you have to change mode using menuconfig.   
 
