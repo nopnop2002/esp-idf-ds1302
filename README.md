@@ -62,3 +62,7 @@ you have to change mode using menuconfig.
 
 ![ds1302-1week](https://user-images.githubusercontent.com/6020549/59961747-e082d300-9516-11e9-87ea-dba01d00e3be.jpg)
 
+# Time difference of 1 month later.   
+
+![ds1302-1month](https://user-images.githubusercontent.com/6020549/61292629-b74f1d00-a80c-11e9-940a-51bd0aeef1d4.jpg)
+
