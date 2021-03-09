@@ -51,7 +51,6 @@ You have to change mode using menuconfig.
 
 ![ds1302-14](https://user-images.githubusercontent.com/6020549/59556737-b2772d80-9002-11e9-921e-4a794605dd86.jpg)
 
-
 # Time difference of 1 week later.   
 
 ![ds1302-1week](https://user-images.githubusercontent.com/6020549/59961747-e082d300-9516-11e9-87ea-dba01d00e3be.jpg)
@@ -60,7 +59,7 @@ You have to change mode using menuconfig.
 
 ![ds1302-1month](https://user-images.githubusercontent.com/6020549/61292629-b74f1d00-a80c-11e9-940a-51bd0aeef1d4.jpg)
 
-
+# Comparison with other RTCs
 This module has a large time lag.   
 I recommend the DS3231 RTC.   
 https://github.com/nopnop2002/esp-idf-ds3231
