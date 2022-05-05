@@ -85,9 +85,9 @@ static bool obtain_time(void)
 void setClock(void *pvParameters)
 {
     // obtain time over NTP
-    ESP_LOGI(pcTaskGetTaskName(0), "Connecting to WiFi and getting time over NTP.");
+    ESP_LOGI(pcTaskGetName(0), "Connecting to WiFi and getting time over NTP.");
     if(!obtain_time()) {
-        ESP_LOGE(pcTaskGetTaskName(0), "Fail to getting time over NTP.");
+        ESP_LOGE(pcTaskGetName(0), "Fail to getting time over NTP.");
         while (1) { vTaskDelay(1); }
     }
 
@@ -99,16 +99,16 @@ void setClock(void *pvParameters)
     now = now + (CONFIG_TIMEZONE*60*60);
     localtime_r(&now, &timeinfo);
     strftime(strftime_buf, sizeof(strftime_buf), "%c", &timeinfo);
-    ESP_LOGI(pcTaskGetTaskName(0), "The current date/time is: %s", strftime_buf);
+    ESP_LOGI(pcTaskGetName(0), "The current date/time is: %s", strftime_buf);
 
 
     // Initialize RTC
     DS1302_Dev dev;
     if (!DS1302_begin(&dev, CONFIG_CLK_GPIO, CONFIG_IO_GPIO, CONFIG_CE_GPIO)) {
-        ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 begin");
+        ESP_LOGE(pcTaskGetName(0), "Error: DS1302 begin");
         while (1) { vTaskDelay(1); }
     }
-    ESP_LOGI(pcTaskGetTaskName(0), "Set initial date time...");
+    ESP_LOGI(pcTaskGetName(0), "Set initial date time...");
 
     /*
     Member    Type Meaning(Range)
@@ -122,13 +122,13 @@ void setClock(void *pvParameters)
     tm_yday   int  days since January 1(0-365)
     tm_isdst  int  Daylight Saving Time flag	
     */
-    ESP_LOGD(pcTaskGetTaskName(0), "timeinfo.tm_sec=%d",timeinfo.tm_sec);
-    ESP_LOGD(pcTaskGetTaskName(0), "timeinfo.tm_min=%d",timeinfo.tm_min);
-    ESP_LOGD(pcTaskGetTaskName(0), "timeinfo.tm_hour=%d",timeinfo.tm_hour);
-    ESP_LOGD(pcTaskGetTaskName(0), "timeinfo.tm_wday=%d",timeinfo.tm_wday);
-    ESP_LOGD(pcTaskGetTaskName(0), "timeinfo.tm_mday=%d",timeinfo.tm_mday);
-    ESP_LOGD(pcTaskGetTaskName(0), "timeinfo.tm_mon=%d",timeinfo.tm_mon);
-    ESP_LOGD(pcTaskGetTaskName(0), "timeinfo.tm_year=%d",timeinfo.tm_year);
+    ESP_LOGD(pcTaskGetName(0), "timeinfo.tm_sec=%d",timeinfo.tm_sec);
+    ESP_LOGD(pcTaskGetName(0), "timeinfo.tm_min=%d",timeinfo.tm_min);
+    ESP_LOGD(pcTaskGetName(0), "timeinfo.tm_hour=%d",timeinfo.tm_hour);
+    ESP_LOGD(pcTaskGetName(0), "timeinfo.tm_wday=%d",timeinfo.tm_wday);
+    ESP_LOGD(pcTaskGetName(0), "timeinfo.tm_mday=%d",timeinfo.tm_mday);
+    ESP_LOGD(pcTaskGetName(0), "timeinfo.tm_mon=%d",timeinfo.tm_mon);
+    ESP_LOGD(pcTaskGetName(0), "timeinfo.tm_year=%d",timeinfo.tm_year);
 
     // Set initial date and time
     DS1302_DateTime dt;
@@ -143,20 +143,20 @@ void setClock(void *pvParameters)
 
     // Check write protect state
     if (DS1302_isWriteProtected(&dev)) {
-        ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 write protected");
+        ESP_LOGE(pcTaskGetName(0), "Error: DS1302 write protected");
         while (1) { vTaskDelay(1); }
     }
 
     // Check write protect state
     if (DS1302_isHalted(&dev)) {
-        ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 halted");
+        ESP_LOGE(pcTaskGetName(0), "Error: DS1302 halted");
         while (1) { vTaskDelay(1); }
     }
-    ESP_LOGI(pcTaskGetTaskName(0), "Set initial date time done");
+    ESP_LOGI(pcTaskGetName(0), "Set initial date time done");
 
     // goto deep sleep
     const int deep_sleep_sec = 10;
-    ESP_LOGI(pcTaskGetTaskName(0), "Entering deep sleep for %d seconds", deep_sleep_sec);
+    ESP_LOGI(pcTaskGetName(0), "Entering deep sleep for %d seconds", deep_sleep_sec);
     esp_deep_sleep(1000000LL * deep_sleep_sec);
 }
 
@@ -166,9 +166,9 @@ void getClock(void *pvParameters)
     DS1302_DateTime dt;
 
     // Initialize RTC
-    ESP_LOGI(pcTaskGetTaskName(0), "Start");
+    ESP_LOGI(pcTaskGetName(0), "Start");
     if (!DS1302_begin(&dev, CONFIG_CLK_GPIO, CONFIG_IO_GPIO, CONFIG_CE_GPIO)) {
-        ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 begin");
+        ESP_LOGE(pcTaskGetName(0), "Error: DS1302 begin");
         while (1) { vTaskDelay(1); }
     }
 
@@ -177,9 +177,9 @@ void getClock(void *pvParameters)
     while(1) {
         // Get RTC date and time
         if (!DS1302_getDateTime(&dev, &dt)) {
-            ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 read failed");
+            ESP_LOGE(pcTaskGetName(0), "Error: DS1302 read failed");
         } else {
-            ESP_LOGI(pcTaskGetTaskName(0), "%d %02d-%02d-%d %d:%02d:%02d",
+            ESP_LOGI(pcTaskGetName(0), "%d %02d-%02d-%d %d:%02d:%02d",
                  dt.dayWeek, dt.dayMonth, dt.month, dt.year, dt.hour, dt.minute, dt.second);
         }
         vTaskDelayUntil(&xLastWakeTime, 1000);
@@ -189,9 +189,9 @@ void getClock(void *pvParameters)
 void diffClock(void *pvParameters)
 {
     // obtain time over NTP
-    ESP_LOGI(pcTaskGetTaskName(0), "Connecting to WiFi and getting time over NTP.");
+    ESP_LOGI(pcTaskGetName(0), "Connecting to WiFi and getting time over NTP.");
     if(!obtain_time()) {
-        ESP_LOGE(pcTaskGetTaskName(0), "Fail to getting time over NTP.");
+        ESP_LOGE(pcTaskGetName(0), "Fail to getting time over NTP.");
         while (1) { vTaskDelay(1); }
     }
 
@@ -203,20 +203,20 @@ void diffClock(void *pvParameters)
     now = now + (CONFIG_TIMEZONE*60*60);
     localtime_r(&now, &timeinfo);
     strftime(strftime_buf, sizeof(strftime_buf), "%m-%d-%y %H:%M:%S", &timeinfo);
-    ESP_LOGI(pcTaskGetTaskName(0), "NTP date/time is: %s", strftime_buf);
+    ESP_LOGI(pcTaskGetName(0), "NTP date/time is: %s", strftime_buf);
 
     DS1302_Dev dev;
     DS1302_DateTime dt;
 
     // Initialize RTC
     if (!DS1302_begin(&dev, CONFIG_CLK_GPIO, CONFIG_IO_GPIO, CONFIG_CE_GPIO)) {
-        ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 begin");
+        ESP_LOGE(pcTaskGetName(0), "Error: DS1302 begin");
         while (1) { vTaskDelay(1); }
     }
 
     // Get RTC date and time
     if (!DS1302_getDateTime(&dev, &dt)) {
-        ESP_LOGE(pcTaskGetTaskName(0), "Error: DS1302 read failed");
+        ESP_LOGE(pcTaskGetName(0), "Error: DS1302 read failed");
         while (1) { vTaskDelay(1); }
     }
 
@@ -232,11 +232,11 @@ void diffClock(void *pvParameters)
     time_t rtcnow = mktime(&rtcinfo);
     localtime_r(&rtcnow, &timeinfo);
     strftime(strftime_buf, sizeof(strftime_buf), "%m-%d-%y %H:%M:%S", &timeinfo);
-    ESP_LOGI(pcTaskGetTaskName(0), "RTC date/time is: %s", strftime_buf);
+    ESP_LOGI(pcTaskGetName(0), "RTC date/time is: %s", strftime_buf);
 
     // Get the time difference
     double x = difftime(rtcnow, now);
-    ESP_LOGI(pcTaskGetTaskName(0), "Time difference is: %f", x);
+    ESP_LOGI(pcTaskGetName(0), "Time difference is: %f", x);
     
     while(1) {
         vTaskDelay(1000);
