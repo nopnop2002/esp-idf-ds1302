@@ -21,14 +21,6 @@
 #define sntp_init esp_sntp_init
 #endif
 
-// You have to set these CONFIG value using menuconfig.
-#if 0
-#define CONFIG_CLK_GPIO		12
-#define CONFIG_IO_GPIO		13
-#define CONFIG_CE_GPIO		14
-#define	CONFIG_TIMEZONE		9
-#endif
-
 #if CONFIG_SET_CLOCK
 	#define NTP_SERVER CONFIG_NTP_SERVER
 #endif
