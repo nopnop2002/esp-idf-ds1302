@@ -3,8 +3,13 @@ DS1302 RTC Driver for esp-idf
 
 I ported from [here](https://github.com/Erriez/ErriezDS1302/tree/master/src).   
 
+# Software requirements
+ESP-IDF V5.0 or later.   
+ESP-IDF V4.4 release branch reached EOL in July 2024.   
+ESP-IDF V5.1 is required when using ESP32-C6.   
+
 # Installation
-```
+```Shell
 git clone https://github.com/nopnop2002/esp-idf-ds1302
 cd esp-idf-ds1302
 idf.py menuconfig
@@ -13,15 +18,15 @@ idf.py flash
 
 # Wireing  
 
-|DS1302||ESP32|
-|:-:|:-:|:-:|
-|CLK|--|GPIO15(*1)|
-|DAT|--|GPIO16(*1)|
-|RST|--|GPIO17(*1)|
-|GND|--|GND|
-|VCC|--|3.3V|
+|DS1302||ESP32|ESP32Sn/Hn/Cn|
+|:-:|:-:|:-:|:-:|
+|CLK|--|GPIO15|GPIO1|
+|DAT|--|GPIO16|GPIO2|
+|RST|--|GPIO17|GPIO3|
+|GND|--|GND|GND|
+|VCC|--|3.3V|3.3V|
 
-(*1) You can change using menuconfig.   
+You can change GPIO using menuconfig.   
 
 
 # Set Clock Mode   
