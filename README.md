@@ -34,15 +34,13 @@ You can change GPIO using menuconfig.
 This mode set RTC initial value using NTP time Server.   
 You have to set these config value using menuconfig.   
 
-![config-ds1302-1](https://user-images.githubusercontent.com/6020549/59513345-a3568980-8ef5-11e9-85c8-4ed1744d73e1.jpg)
-
-![config_ds1302-2](https://user-images.githubusercontent.com/6020549/59513344-a3568980-8ef5-11e9-9e91-79d73f91a3dc.jpg)
+![Image](https://github.com/user-attachments/assets/8f5f4924-b848-416c-8904-abf8d460fed2)
+![Image](https://github.com/user-attachments/assets/123bccce-016d-4b9d-896f-988eca4e95db)
 
 You have to set gpio & NTP Server using menuconfig.   
 
-![config-ds1302-11](https://user-images.githubusercontent.com/6020549/59513485-e3b60780-8ef5-11e9-9d77-aee1cb9d40dd.jpg)
-
-![config-ds1302-12](https://user-images.githubusercontent.com/6020549/59513496-e9135200-8ef5-11e9-9f03-2ad96fc7c1c9.jpg)
+![Image](https://github.com/user-attachments/assets/ef1580f5-324c-485b-b006-233c574d79a9)
+![Image](https://github.com/user-attachments/assets/6b013b47-3e96-4005-bd1c-4ea286a2638e)
 
 
 # Get Clock Mode   
@@ -50,9 +48,8 @@ You have to set gpio & NTP Server using menuconfig.
 This mode take out the time from a RTC clock.   
 You have to change mode using menuconfig.   
 
-![config-ds1302-11](https://user-images.githubusercontent.com/6020549/59513485-e3b60780-8ef5-11e9-9d77-aee1cb9d40dd.jpg)
-
-![config-ds1302-13](https://user-images.githubusercontent.com/6020549/59514431-ca15bf80-8ef7-11e9-9b59-ff4b5510ec0f.jpg)
+![Image](https://github.com/user-attachments/assets/ef1580f5-324c-485b-b006-233c574d79a9)
+![Image](https://github.com/user-attachments/assets/31011055-3bf0-494d-b93f-19e73469d0b8)
 
 ![ds1302-13](https://user-images.githubusercontent.com/6020549/59513594-1fe96800-8ef6-11e9-9b53-a2d2626d784f.jpg)
 
@@ -63,9 +60,8 @@ This mode get time over NTP, and take out the time from a RTC clock.
 Calculate time difference of NTP and RTC.   
 You have to change mode using menuconfig.   
 
-![config-ds1302-11](https://user-images.githubusercontent.com/6020549/59513485-e3b60780-8ef5-11e9-9d77-aee1cb9d40dd.jpg)
-
-![config-ds1302-14](https://user-images.githubusercontent.com/6020549/59556587-9de56600-8fff-11e9-8a02-69eacd675ad8.jpg)
+![Image](https://github.com/user-attachments/assets/ef1580f5-324c-485b-b006-233c574d79a9)
+![Image](https://github.com/user-attachments/assets/a0278c3b-07ac-4817-bf55-95a429cd31f7)
 
 ![ds1302-14](https://user-images.githubusercontent.com/6020549/59556737-b2772d80-9002-11e9-921e-4a794605dd86.jpg)
 
