@@ -12,7 +12,7 @@ menu "DS1302 Configuration"
 
 	config CLK_GPIO
 		int "DS1302 CLK GPIO number"
-		range 0 34
+		range 0 GPIO_RANGE_MAX
 		default 15 if IDF_TARGET_ESP32
 		default  1
 		help
@@ -22,7 +22,7 @@ menu "DS1302 Configuration"
 
 	config IO_GPIO
 		int "DS1302 IO(DAT) GPIO number"
-		range 0 34
+		range 0 GPIO_RANGE_MAX
 		default 16 if IDF_TARGET_ESP32
 		default  2
 		help
@@ -32,10 +32,9 @@ menu "DS1302 Configuration"
 
 	config CE_GPIO
 		int "DS1302 CE(RST) GPIO number"
-		range 0 34
+		range 0 GPIO_RANGE_MAX
 		default 17 if IDF_TARGET_ESP32
 		default  3
-
 		help
 			GPIO number (IOxx) to DS1302 CE(RST).
 			Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to Reset.
