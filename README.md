@@ -18,7 +18,7 @@ idf.py flash
 
 # Wireing  
 
-|DS1302||ESP32|ESP32Sn/Hn/Cn|
+|DS1302||ESP32|ESP32Sx/Cx|
 |:-:|:-:|:-:|:-:|
 |CLK|--|GPIO15|GPIO1|
 |DAT|--|GPIO16|GPIO2|
